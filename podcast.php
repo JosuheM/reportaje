@@ -31,13 +31,10 @@ frente_header('DDP Noticias | Podcast', 'podcast');
             <?php endif; ?>
             <?php foreach ($podcasts as $pod): ?>
             <div class="col-lg-4 col-md-6 mb-5" id="p<?= (int) $pod['id'] ?>">
-                <div class="area-box">
-                    <div class="ratio-16x9 mb-2"><?= embed_media($pod['url_embed']) ?></div>
-                    <h5 class="mt-2"><?= h($pod['titulo']) ?></h5>
-                    <?php if ($pod['fecha_publicacion']): ?>
-                        <span class="text-muted small"><?= h(fecha_larga($pod['fecha_publicacion'])) ?></span>
-                    <?php endif; ?>
-                </div>
+                <?= tarjeta_podcast($pod['url_embed'], $pod['titulo'], 'pod-' . $pod['id']) ?>
+                <?php if ($pod['fecha_publicacion']): ?>
+                    <span class="text-muted small d-block mt-2"><?= h(fecha_larga($pod['fecha_publicacion'])) ?></span>
+                <?php endif; ?>
             </div>
             <?php endforeach; ?>
         </div>

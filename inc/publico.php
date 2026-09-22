@@ -180,6 +180,52 @@ function embed_media(?string $v): string
                     style="width:100%;height:100%;border:0;border-radius:10px;"></iframe>';
 }
 
+/** ¿Qué plataforma es? (para elegir el tamaño correcto del reproductor: video 16:9 vs. audio). */
+function tipo_embed(?string $v): string
+{
+    $v = trim((string) $v);
+    if ($v === '') { return 'vacio'; }
+    if (stripos($v, 'spotify.com') !== false) { return 'audio'; }   // Spotify: tarjeta tipo audio, no 16:9
+    return 'video';   // YouTube, Vimeo, iframe suelto: se trata como video
+}
+
+/**
+ * Tarjeta "portada + botón de reproducir" para un podcast/especial. El
+ * reproductor NO se muestra directo en la tarjeta (ahí se ve recortado si
+ * el recuadro es angosto, sobre todo con Spotify); se abre en una ventana
+ * emergente (modal de Bootstrap) al hacer clic.
+ */
+function tarjeta_podcast(string $urlEmbed, string $titulo, string $idUnico): string
+{
+    if (trim($urlEmbed) === '') { return ''; }
+    $tipo = tipo_embed($urlEmbed);
+    $icono = stripos($urlEmbed, 'spotify.com') !== false ? 'fa-spotify'
+           : (stripos($urlEmbed, 'youtu') !== false ? 'fa-youtube' : 'fa-play-circle');
+    $modalId = 'pod-' . preg_replace('/[^A-Za-z0-9_-]/', '', $idUnico);
+    ob_start();
+    ?>
+    <div class="podcast-card" data-toggle="modal" data-target="#<?= h($modalId) ?>">
+        <div class="podcast-card-play"><i class="fa <?= $icono ?>" aria-hidden="true"></i></div>
+        <span class="podcast-card-label">Escuchar / ver</span>
+        <p class="podcast-card-title mb-0"><?= h($titulo) ?></p>
+    </div>
+    <div class="modal fade" id="<?= h($modalId) ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title"><?= h($titulo) ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="<?= $tipo === 'audio' ? 'modal-embed-audio' : 'ratio-16x9' ?>"><?= embed_media($urlEmbed) ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
 /**
  * CSS + JS de un visor de imagen a pantalla completa (sin librerías externas):
  * al hacer clic en cualquier <img> del artículo que no sea ya un enlace,

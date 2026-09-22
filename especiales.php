@@ -33,7 +33,7 @@ frente_header('DDP Noticias | Especiales', 'especiales');
             <div class="col-lg-6 mb-5" id="e<?= (int) $esp['id'] ?>">
                 <div class="area-box h-100 d-flex flex-column">
                     <?php if ($esp['url_embed']): ?>
-                        <div class="ratio-16x9 mb-3"><?= embed_media($esp['url_embed']) ?></div>
+                        <div class="mb-3"><?= tarjeta_podcast($esp['url_embed'], $esp['titulo'], 'esp-' . $esp['id']) ?></div>
                     <?php elseif ($esp['foto_portada']): ?>
                         <a href="<?= $esp['reportaje_id'] ? h(url_reportaje($esp['reportaje_id'])) : '#' ?>" class="d-block mb-3">
                             <img src="assets/images/<?= h($esp['foto_portada']) ?>" alt="" class="img-fluid" style="border-radius:8px;aspect-ratio:16/9;object-fit:cover;width:100%" loading="lazy" decoding="async">

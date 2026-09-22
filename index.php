@@ -384,10 +384,7 @@ Author URL: http://w3layouts.com
             <?php endif; ?>
             <?php foreach ($podcasts as $i => $pod): ?>
             <div class="col-lg-3 col-sm-6 <?= $i > 0 ? 'mt-sm-0 mt-5 mt-lg-0' : '' ?>">
-                <div class="area-box">
-                    <div class="ratio-16x9 mb-2"><?= embed_media($pod['url_embed']) ?></div>
-                    <p><a href="podcast.php#p<?= (int) $pod['id'] ?>" class="text-dark"><?= h($pod['titulo']) ?></a></p>
-                </div>
+                <?= tarjeta_podcast($pod['url_embed'], $pod['titulo'], 'home-pod-' . $pod['id']) ?>
             </div>
             <?php endforeach; ?>
         </div>
@@ -402,14 +399,16 @@ Author URL: http://w3layouts.com
         <div class="row">
             <?php foreach ($especiales as $i => $esp): ?>
             <div class="col-lg-4 <?= $i > 0 ? 'mt-lg-0 mt-5' : '' ?>">
-                <div class="area-box">
-                    <?php if ($esp['url_embed']): ?>
-                        <div class="ratio-16x9 mb-2"><?= embed_media($esp['url_embed']) ?></div>
-                    <?php elseif ($esp['foto_portada']): ?>
-                        <img src="assets/images/<?= h($esp['foto_portada']) ?>" alt="" class="img-fluid mb-2" style="border-radius:8px;aspect-ratio:16/9;object-fit:cover;width:100%" loading="lazy" decoding="async">
-                    <?php endif; ?>
-                    <p class="mb-0"><a href="especiales.php#e<?= (int) $esp['id'] ?>" class="text-dark font-weight-bold"><?= h($esp['titulo']) ?></a></p>
-                </div>
+                <?php if ($esp['url_embed']): ?>
+                    <?= tarjeta_podcast($esp['url_embed'], $esp['titulo'], 'home-esp-' . $esp['id']) ?>
+                <?php else: ?>
+                    <div class="area-box">
+                        <?php if ($esp['foto_portada']): ?>
+                            <img src="assets/images/<?= h($esp['foto_portada']) ?>" alt="" class="img-fluid mb-2" style="border-radius:8px;aspect-ratio:16/9;object-fit:cover;width:100%" loading="lazy" decoding="async">
+                        <?php endif; ?>
+                        <p class="mb-0"><a href="especiales.php#e<?= (int) $esp['id'] ?>" class="text-dark font-weight-bold"><?= h($esp['titulo']) ?></a></p>
+                    </div>
+                <?php endif; ?>
             </div>
             <?php endforeach; ?>
         </div>
@@ -454,162 +453,6 @@ Author URL: http://w3layouts.com
 </section>
 <!-- //logos Section -->
 
-<section class="w3l-team" id="team">
-	<div class="teams1 py-5 mb-3">
-		<div class="container py-lg-3 pb-lg-5 pb-4">
-			<div class="teams1-content">
-                <!--<h5 class="title-small text-center">Amazing speakers</h5>-->
-                <h3 class="title-big text-center mb-5">Especiales</h3>
-					<div class="owl-carousel owl-theme text-center">
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team2.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<!--<h3 class="name-pos"><a href="#url">Anthony</a></h3>-->
-									<p>Por una mineria artesanal segura para todos</p>
-									<!--<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>-->
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team3.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<!--<h3 class="name-pos"><a href="#url">Sara grant</a></h3>-->
-									<p>REINFO Días decisivos en el Congreso</p>
-									<!--<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>-->
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team4.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<!--<h3 class="name-pos"><a href="#url">Claire Olson</a></h3>-->
-									<p>La minería ilegal: un negocio rentable para bandas criminales</p>
-									<!--<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>-->
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team5.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<!--<h3 class="name-pos"><a href="#url">Paula cross</a></h3>-->
-									<p>El problema del REINFO y la minería ilegal en 50 segundos</p>
-									<!--<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>-->
-								</div>
-							</div>
-						</div>
-						<!--<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team6.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<h3 class="name-pos"><a href="#url">Amber kinsa</a></h3>
-									<p>CEO of company</p>
-									<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team7.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<h3 class="name-pos"><a href="#url">Edward wood</a></h3>
-									<p>Manager & Chief</p>
-									<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team8.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<h3 class="name-pos"><a href="#url">Jonarthan parks</a></h3>
-									<p>Manager and Officer</p>
-									<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/s1.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<h3 class="name-pos"><a href="#url">Leroy bell</a></h3>
-									<p>CEO of company</p>
-									<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="d-grid team-info">
-								<div class="column position-relative">
-									<a href="#url"><img src="assets/images/team1.jpg" alt="" class="img-fluid rounded team-image" /></a>
-								</div>
-								<div class="column">
-									<h3 class="name-pos"><a href="#url">Bradley</a></h3>
-									<p>Founder of Company</p>
-									<div class="social">
-										<a href="#facebook" class="facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-										<a href="#twitter" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-										<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									</div>
-								</div>
-							</div>
-						</div>-->
-					</div>
-			</div>
-		</div>
-	</div>
-</section>
 <section class="w3l-banner py-0" id="work">
     <div class="midd-w3 py-lg-4 py-md-3">
         <div class="container">
