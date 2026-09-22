@@ -2,7 +2,7 @@
 # Reemplaza a los archivos .html sueltos que había en la raíz.
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /reportaje/
+    RewriteBase /
 
     RewriteRule ^index\.html$              index.php               [R=301,L]
     RewriteRule ^boletines\.html$          boletines.php           [R=301,L]
