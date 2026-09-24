@@ -4,9 +4,7 @@ Réplica funcional de [dialogoydesarrollo.com.pe](https://www.dialogoydesarrollo
 
 **URL pública:** https://orangered-bison-369479.hostingersite.com
 **Panel de administración:** https://orangered-bison-369479.hostingersite.com/admin/login.php
-Contraseña del admin 
-Usuario: josuhe.solyluna@gmail.com
-Contraseña: Dragoncity12345
+
 ## Funcionalidades
 
 - Sitio público dinámico: Reportajes (con paginación), Noticias, Boletín NTEP, Podcast y Especiales.
