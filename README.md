@@ -56,8 +56,8 @@ URL: https://orangered-bison-369479.hostingersite.com/admin/login.php
 |---|---|
 | Usuario (correo) |josuhe.solyluna@gmail.com |
 | Contraseña | Dragoncity12345 |
-| Código de recuperación (` DDP-recuperar-2026`) |DDP-recuperar-2026 |
-| Código de registro (` DDP-alta-2026`) | DDP-alta-2026 |
+| Código de recuperación  |DDP-recuperar-2026 |
+| Código de registro  | DDP-alta-2026 |
 
 ## Seguridad y buenas prácticas
 
