@@ -54,18 +54,4 @@ PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache (`.htaccess`) 
 - Scripts de uso único (migraciones, importadores) eliminados del repositorio.
 - Historial de Git limpio y commits atómicos con mensajes descriptivos.
 
-## Capturas del proceso
 
-Las imágenes están en `docs/capturas/`:
-
-| Captura | Archivo |
-|---|---|
-| hPanel: base de datos MySQL creada | `docs/capturas/01-hpanel-base-de-datos.png` |
-| phpMyAdmin con las tablas importadas | `docs/capturas/02-phpmyadmin-tablas.png` |
-| hPanel: despliegue Git completado | `docs/capturas/03-hpanel-git.png` |
-| Aplicación funcionando en vivo | `docs/capturas/04-app-en-vivo.png` |
-
-![Base de datos en hPanel](docs/capturas/01-hpanel-base-de-datos.png)
-![phpMyAdmin con tablas](docs/capturas/02-phpmyadmin-tablas.png)
-![Despliegue Git](docs/capturas/03-hpanel-git.png)
-![App en vivo](docs/capturas/04-app-en-vivo.png)
