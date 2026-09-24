@@ -52,11 +52,12 @@ PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache (`.htaccess`) 
 
 URL: https://orangered-bison-369479.hostingersite.com/admin/login.php
 
-| Rol | Correo | Contraseña |
-|---|---|---|
-| Autor (solo crea borradores) | `demo@ejemplo.com` | `CONTRASEÑA-DEMO` |
-
-La cuenta de administrador real no se publica por seguridad.
+| Campo | Valor |
+|---|---|
+| Usuario (correo) | |
+| Contraseña | |
+| Código de recuperación (`CODIGO_RECUPERACION`) | |
+| Código de registro (`CODIGO_REGISTRO`) | |
 
 ## Seguridad y buenas prácticas
 
