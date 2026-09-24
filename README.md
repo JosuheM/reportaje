@@ -48,6 +48,16 @@ PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache (`.htaccess`) 
 3. **Credenciales:** como `conexion.php` no está en Git, se crea a mano en el servidor (Administrador de archivos → `admin/config/conexion.php`) con los datos de la base de Hostinger.
 4. **Verificación:** abrir la URL pública y entrar al panel.
 
+## Acceso de demostración al panel
+
+URL: https://orangered-bison-369479.hostingersite.com/admin/login.php
+
+| Rol | Correo | Contraseña |
+|---|---|---|
+| Autor (solo crea borradores) | `demo@ejemplo.com` | `CONTRASEÑA-DEMO` |
+
+La cuenta de administrador real no se publica por seguridad.
+
 ## Seguridad y buenas prácticas
 
 - Contraseñas y códigos maestros fuera del repositorio (`.gitignore` + plantilla `conexion.example.php`).
