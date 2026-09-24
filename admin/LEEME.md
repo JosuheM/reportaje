@@ -23,7 +23,7 @@ El **autor** se escribe como texto en el formulario; el panel busca ese nombre e
 ## Usuarios (solo por código)
 - Primer usuario: `admin/setup.php` (si `usuarios` está vacía) → **borrar tras usar**.
 - Cambiar correo/clave: `C:\xampp\php\php.exe admin\cambiar-clave.php <correo> <clave_nueva> [correo_nuevo]` → **borrar tras usar**.
-- Usuario actual: `josuhe.solyluna@gmail.com` / `ddp2026admin`.
+- Las credenciales del administrador no se documentan aquí.
 
 ## Rutas
 | URL | Qué hace |
@@ -47,11 +47,6 @@ El **autor** se escribe como texto en el formulario; el panel busca ese nombre e
 - `podcast.php` — todos los episodios (reproductores embebidos 16:9).
 - `articulo.php?id=N` — la nota con la plantilla del sitio; la firma sale de `autores`.
 - Miniaturas y embeds en `assets/css/ddp.css`. Redirecciones de URLs viejas en `.htaccess`.
-
-## Limpieza pendiente (borrar estos archivos)
-- `admin/migrar-a-revista.php` (ya migró bdreportaje → revista_digital)
-- `admin/importar-reportajes.php`, `admin/importar-boletines.php` (obsoletos, apuntaban a bdreportaje)
-- `admin/setup.php` si ya existe el usuario
 
 ## Siguiente paso
 - Secciones **Videos**, **Alianzas** y **Sobre D&D** (tabla `videos` existe; falta admin + front).
