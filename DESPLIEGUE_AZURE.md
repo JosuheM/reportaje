@@ -61,4 +61,4 @@ Portal → *App Services* → Crear → Aplicación web.
 
 - F1: 60 minutos de CPU al día; la web se duerme por inactividad y la primera visita tarda.
 - Las imágenes o PDF subidos desde el panel se guardan en el disco de la Web App y **se pierden en el siguiente despliegue**. Lo que esté en git (carpeta `assets/images`) se conserva.
-- El primer acceso a `admin/setup.php` con la tabla `usuarios` vacía permite crear un administrador a cualquiera. Por eso se importa la base con datos; si no, créalo de inmediato y borra ese archivo.
+- `admin/setup.php` se eliminó del repositorio: con la tabla `usuarios` vacía permitía crear un administrador a cualquiera. La base de Azure se importa con los usuarios existentes; para crear el primero desde cero, ver el README (instalación local, paso 5).

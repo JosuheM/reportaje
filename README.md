@@ -1,9 +1,9 @@
 # DDP Noticias — Diálogo y Desarrollo Perú
 
-Réplica funcional de [dialogoydesarrollo.com.pe](https://www.dialogoydesarrollo.com.pe) con panel de administración propio, hecha en **PHP + MySQL** y desplegada en **Hostinger** desde GitHub.
+Réplica funcional de [dialogoydesarrollo.com.pe](https://www.dialogoydesarrollo.com.pe) con panel de administración propio, hecha en **PHP + MySQL** y desplegada en **Microsoft Azure** (App Service + Azure Database for MySQL) desde GitHub Actions. También estuvo desplegada en Hostinger.
 
-**URL pública:** https://orangered-bison-369479.hostingersite.com
-**Panel de administración:** https://orangered-bison-369479.hostingersite.com/admin/login.php
+**URL pública (Azure):** https://ddp-reportaje-josuhe-gpg0d4abazfwdva6.chilecentral-01.azurewebsites.net
+**Panel de administración:** `/admin/login.php` en la misma URL (las credenciales no se publican aquí).
 
 ## Funcionalidades
 
@@ -15,7 +15,7 @@ Réplica funcional de [dialogoydesarrollo.com.pe](https://www.dialogoydesarrollo
 
 ## Tecnologías
 
-PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache (`.htaccess`) · Bootstrap 4 · AdminLTE 3.2
+PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache o nginx · Bootstrap 4 · AdminLTE 3.2 · GitHub Actions
 
 ## Estructura
 
@@ -37,7 +37,18 @@ PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache (`.htaccess`) 
 2. En phpMyAdmin crear la base `revista_digital` (cotejamiento `utf8mb4_unicode_ci`) e importar `database/schema.sql`.
 3. Copiar `admin/config/conexion.example.php` a `admin/config/conexion.php` y completar usuario, contraseña y códigos.
 4. Cambiar `RewriteBase` en `.htaccess` a `/reportaje/` si se sirve desde subcarpeta.
-5. Abrir `http://localhost/reportaje/admin/setup.php` para crear el primer usuario y **borrar ese archivo después**.
+5. Crear el primer usuario administrador directamente en la base (el script `setup.php` se eliminó por seguridad). Primero generar el hash de la contraseña:
+
+   ```
+   C:\xampp\php\php.exe -r "echo password_hash('TU_CLAVE', PASSWORD_DEFAULT);"
+   ```
+
+   y luego, en phpMyAdmin → pestaña SQL:
+
+   ```sql
+   INSERT INTO usuarios (nombres, ap_paterno, email, password_hash, rol, created_at)
+   VALUES ('Tu nombre', '', 'tu@correo.com', 'EL_HASH_GENERADO', 'admin', NOW());
+   ```
 
 ## Despliegue en Hostinger
 
@@ -46,16 +57,13 @@ PHP 8.2 · MySQL/MariaDB (PDO con consultas preparadas) · Apache (`.htaccess`) 
 3. **Credenciales:** como `conexion.php` no está en Git, se crea a mano en el servidor (Administrador de archivos → `admin/config/conexion.php`) con los datos de la base de Hostinger.
 4. **Verificación:** abrir la URL pública y entrar al panel.
 
-## Acceso de demostración al panel
+## Despliegue en Azure
 
-URL: https://orangered-bison-369479.hostingersite.com/admin/login.php
+Los pasos completos están en [DESPLIEGUE_AZURE.md](DESPLIEGUE_AZURE.md): base MySQL Flexible Server, Web App PHP 8.2 (Linux) y el flujo `.github/workflows/azure-deploy.yml`, que publica cada `git push` a `main`. En Azure, la conexión a la base y los códigos del panel se configuran como variables de entorno (App Settings), nunca en el código.
 
-| Campo | Valor |
-|---|---|
-| Usuario (correo) |josuhe.solyluna@gmail.com |
-| Contraseña | Dragoncity12345 |
-| Código de recuperación  |DDP-recuperar-2026 |
-| Código de registro  | DDP-alta-2026 |
+## Acceso al panel
+
+Las credenciales del panel **no se publican en este repositorio**. Se entregan por un canal privado.
 
 ## Seguridad y buenas prácticas
 

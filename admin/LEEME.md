@@ -21,7 +21,7 @@ Lógica propia en `config/`, `partials/`, `*.php`.
 El **autor** se escribe como texto en el formulario; el panel busca ese nombre en `autores` y lo crea si no existe (vacío = "Redacción").
 
 ## Usuarios (solo por código)
-- Primer usuario: `admin/setup.php` (si `usuarios` está vacía) → **borrar tras usar**.
+- Primer usuario: se inserta directo en la tabla `usuarios` (ver README, instalación local). `admin/setup.php` se eliminó por seguridad.
 - Cambiar correo/clave: `C:\xampp\php\php.exe admin\cambiar-clave.php <correo> <clave_nueva> [correo_nuevo]` → **borrar tras usar**.
 - Las credenciales del administrador no se documentan aquí.
 
@@ -38,7 +38,7 @@ El **autor** se escribe como texto en el formulario; el panel busca ese nombre e
 | `admin/medios.php` | Biblioteca de imágenes: ver / buscar / subir / borrar las que no se usan |
 | `admin/apariencia.php` | Ajustes de apariencia: marco decorativo de tarjetas (esquina roja/blanca) on/off + color |
 | `admin/subir.php` | Endpoint de subida de imágenes del editor |
-| `admin/setup.php`, `admin/cambiar-clave.php` | **borrar tras usar** |
+| `admin/cambiar-clave.php` | solo consola (responde 403 por web); **borrar tras usar** |
 
 ## Front dinámico (lee de `revista_digital`)
 - `index.php` — recuadro grande + 3 tarjetas (reportajes con "Mostrar en portada"), noticias recientes, último boletín, 4 podcasts.
