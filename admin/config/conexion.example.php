@@ -17,8 +17,16 @@
 
 function ddp_env(string $clave, string $porDefecto): string
 {
-    $valor = getenv($clave);
-    return ($valor === false || $valor === '') ? $porDefecto : $valor;
+    // PHP-FPM en Azure App Service no siempre expone las App Settings con su
+    // nombre; Azure las publica además con el prefijo APPSETTING_.
+    foreach ([$clave, 'APPSETTING_' . $clave] as $nombre) {
+        foreach ([getenv($nombre), $_SERVER[$nombre] ?? false, $_ENV[$nombre] ?? false] as $valor) {
+            if (is_string($valor) && $valor !== '') {
+                return $valor;
+            }
+        }
+    }
+    return $porDefecto;
 }
 
 define('DB_HOST', ddp_env('DB_HOST', 'localhost'));
