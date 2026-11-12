@@ -1,0 +1,30 @@
+name: Desplegar en Azure App Service
+
+# Cada push a main despliega el sitio. Configuración necesaria en GitHub
+# (Settings -> Secrets and variables -> Actions):
+#   Secret   AZURE_WEBAPP_PUBLISH_PROFILE  contenido del perfil de publicación (.PublishSettings)
+#   Variable AZURE_WEBAPP_NAME             nombre de la Web App en Azure
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # conexion.php no está en git: en Azure se genera desde la plantilla, que
+      # lee usuario, contraseña y códigos de las App Settings (variables de entorno).
+      - name: Crear conexion.php desde la plantilla
+        run: cp admin/config/conexion.example.php admin/config/conexion.php
+
+      - name: Quitar lo que no hace falta en producción
+        run: rm -rf .git .github _static_old docs
+
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
